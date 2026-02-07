@@ -1,4 +1,4 @@
-Run this in the SAME terminal where you run "uvicorn main:app --reload --port 8000":
+Run this before starting the app (or in the same env where the backend runs via npm run dev):
 
   py -3.11 -m pip install google-genai
 
@@ -6,6 +6,4 @@ Or if "py" doesn't work:
 
   "C:\Users\HP\AppData\Local\Programs\Python\Python311\python.exe" -m pip install google-genai
 
-Then restart uvicorn:
-
-  uvicorn main:app --reload --port 8000
+Then run (or restart) from repo root: npm run dev

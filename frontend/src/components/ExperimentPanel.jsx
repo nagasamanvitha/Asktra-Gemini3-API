@@ -127,7 +127,7 @@ export default function ExperimentPanel({
           )}
           {!datasetLoading && !datasetContent && (
             <div className="experiment-loading experiment-loading-error">
-              <p>Default data didn’t load. Make sure the backend is running (e.g. <code>uvicorn main:app --port 8000</code> from the backend folder).</p>
+              <p>Default data didn’t load. Make sure the backend is running (e.g. <code>npm run dev</code> from the repo root).</p>
               <p>Click <strong>Reset all to default</strong> above to retry, or paste your own data in the boxes below.</p>
             </div>
           )}

@@ -70,7 +70,9 @@ Every finding is grounded in a **specific source** (Slack, Git, Jira, Docs). **C
 
 ---
 
-## Run locally
+## Run locally (like gemini3 — one command, no uvicorn)
+
+Asktra is now a **Next.js** app (same as gemini3): one `npm run dev`, no Python/uvicorn.
 
 ### Clone and install
 
@@ -79,36 +81,21 @@ git clone <repo>
 cd Asktra
 ```
 
-### Backend
-
-```bash
-pip install -r requirements.txt
-```
-
 Copy `.env.example` to `.env` and set:
 
 ```bash
 GEMINI_API_KEY=your_key_here
-# Optional: GEMINI_THINKING_LEVEL=HIGH  (Phase 0 / Phase 7 extended reasoning)
-# Optional: GEMINI_MODEL=gemini-3-pro-preview  (deeper reasoning)
+# Optional: GEMINI_MODEL=gemini-2.0-flash  (or gemini-3-flash-preview)
 ```
 
-Start the API:
+Install and run **everything** with one command:
 
 ```bash
-cd backend
-uvicorn main:app --reload --port 8000
-```
-
-### Frontend
-
-```bash
-cd frontend
 npm install
 npm run dev
 ```
 
-Open **http://localhost:3000**.
+Open **http://localhost:3000**. Frontend and API (Next.js API routes) run together — no separate backend.
 
 **Quick test:** Ask *"Why does auth timeout fail?"* — Asktra infers version (e.g. v2.4), shows contradiction (docs 30s vs code 90s), reasoning trace, and sources. Use **Findings** and a follow-up like *"Actually, I think the timeout is 30s"* to see **Hard Truths**: Asktra corrects the user from its own investigation.
 
@@ -116,8 +103,8 @@ Open **http://localhost:3000**.
 
 ## Build for production (e.g. Vercel)
 
-- **Backend:** Vercel looks for the FastAPI app in `api/main.py` (see repo). Set `GEMINI_API_KEY` (and optional `GEMINI_THINKING_LEVEL`, `GEMINI_MODEL`) in project environment variables.
-- **Frontend:** `cd frontend && npm run build && npm run preview` (or deploy the `dist` output to any static host).
+- **Next.js:** `npm run build` then `npm start`, or connect the repo to Vercel — it auto-detects Next.js. Set `GEMINI_API_KEY` (and optional `GEMINI_MODEL`) in project environment variables.
+- No Python/uvicorn on Vercel; API routes live under `app/api/` (like gemini3).
 
 ---
 
@@ -127,7 +114,7 @@ Open **http://localhost:3000**.
 - **Frontend:** React 18, Vite
 - **Data:** Preloaded dataset (`backend/dataset/`: Slack, Git, Jira, docs, releases) + optional overrides and prior context
 
-Deploy on **Vercel** (FastAPI serverless) or run backend with uvicorn behind any reverse proxy.
+Deploy on **Vercel** (Next.js) or run locally with **npm run dev** (like gemini3 — no uvicorn).
 
 ---
 
