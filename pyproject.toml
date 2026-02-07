@@ -4,5 +4,6 @@ version = "1.0.0"
 description = "Asktra — Causal Reconciliation for Software Systems"
 requires-python = ">=3.10"
 
+# Vercel FastAPI entry: API-only app (no uvicorn in production; same pattern as Next.js API routes)
 [project.scripts]
-app = "index:app"
+app = "api.main:app"

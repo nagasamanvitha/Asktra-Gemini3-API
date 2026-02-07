@@ -13,15 +13,12 @@ from dotenv import load_dotenv
 _env_path = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(_env_path)
 
-# Fail fast if google-genai is not installed in *this* Python (the one running uvicorn)
+# Defer google-genai check to get_gemini() so Vercel serverless never crashes at import (like Next.js API routes)
 try:
     from google import genai  # noqa: F401
+    _HAS_GENAI = True
 except ImportError:
-    raise RuntimeError(
-        "google-genai is not installed in the Python environment running this server. "
-        "In the SAME terminal where you run 'uvicorn main:app', run: pip install google-genai "
-        "Then restart uvicorn."
-    )
+    _HAS_GENAI = False
 
 from contextlib import asynccontextmanager
 
@@ -189,12 +186,17 @@ def _build_ask_response(result: dict, source_details: list) -> dict:
 
 def get_gemini() -> GeminiClient:
     global _gemini
+    if not _HAS_GENAI:
+        raise HTTPException(
+            status_code=503,
+            detail="google-genai is not installed. Run: pip install google-genai",
+        )
     if _gemini is None:
         key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
         if not key:
             raise HTTPException(
                 status_code=503,
-                detail="GEMINI_API_KEY or GOOGLE_API_KEY not set",
+                detail="GEMINI_API_KEY or GOOGLE_API_KEY not set (set in Vercel env or .env)",
             )
         _gemini = GeminiClient(api_key=key)
     return _gemini
@@ -206,6 +208,11 @@ _gemini_bundle: GeminiClient | None = None
 def get_gemini_bundle() -> GeminiClient:
     """Use GEMINI_BUNDLE_API_KEY for reconciliation bundle (e.g. Gemini 3 key); fallback to main key.
     When GEMINI_BUNDLE_API_KEY is set, we create a fresh client each time so the bundle key is always used."""
+    if not _HAS_GENAI:
+        raise HTTPException(
+            status_code=503,
+            detail="google-genai is not installed. Run: pip install google-genai",
+        )
     bundle_key = os.environ.get("GEMINI_BUNDLE_API_KEY")
     if bundle_key:
         # Always use the bundle key when set (no cache). Use Gemini 3 for bundle when bundle key is set.
