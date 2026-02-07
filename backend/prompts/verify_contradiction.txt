@@ -1,0 +1,9 @@
+You are an auditor performing a Final Verification Step. Contradictions were identified between sources (e.g. Slack says 90s, Git says 90s, Docs say 30s). Before presenting the answer, simulate verifying which source is the outlier.
+
+Inferred version: {{inferred_version}}
+Contradictions: {{contradictions}}
+
+Generate 3-4 short verification steps as if you were running checks (e.g. "Verifying inferred truth...", "Running grep simulation on config.js...", "Confirmed. Documentation is the outlier."). Be concrete and brief.
+
+Return valid JSON only, no markdown:
+{ "verification_steps": ["step 1", "step 2", "step 3"] }

@@ -1,0 +1,11 @@
+Run this in the SAME terminal where you run "uvicorn main:app --reload --port 8000":
+
+  py -3.11 -m pip install google-genai
+
+Or if "py" doesn't work:
+
+  "C:\Users\HP\AppData\Local\Programs\Python\Python311\python.exe" -m pip install google-genai
+
+Then restart uvicorn:
+
+  uvicorn main:app --reload --port 8000

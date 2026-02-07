@@ -1,0 +1,17 @@
+You are generating a Reconciliation Bundle: three artifacts for the team after a causal analysis.
+
+Inferred version: {{inferred_version}}
+Root cause: {{root_cause}}
+Contradictions: {{contradictions}}
+Risk: {{risk}}
+Fix steps: {{fix_steps}}
+Verification: {{verification}}
+Sources: {{sources}}
+
+You MUST respond with exactly one valid JSON object. No markdown, no code fence, no explanation before or after. Use only these three keys: post_mortem, pr_diff, slack_summary. Escape any quotes inside string values.
+
+post_mortem: Full post-mortem in Markdown (Summary, Root Cause, Contradictions, Impact, Fix Steps, Verification, Sources). 2-4 paragraphs.
+pr_diff: Markdown for a GitHub PR: title, description, and a suggested diff or code change (e.g. revert AUTH_TIMEOUT to 30s in config.js). Actionable.
+slack_summary: Short Slack message (2-4 sentences), plain text: what we found, risk, what to do next.
+
+Example shape (replace with real content): {"post_mortem": "...", "pr_diff": "...", "slack_summary": "..."}

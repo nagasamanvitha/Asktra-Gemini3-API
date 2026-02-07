@@ -1,0 +1,31 @@
+[
+  {
+    "id": "AUTH-101",
+    "key": "AUTH-101",
+    "title": "Staging Login Latency",
+    "status": "Closed",
+    "updated": "2025-09-13",
+    "created": "2025-09-10",
+    "assignee": "DevSarah",
+    "reporter": "QA Team",
+    "comment": "Resolved by increasing timeout. No further action needed.",
+    "comments": [
+      {"date": "2025-09-10", "author": "QA Team", "body": "Staging auth timing out under load."},
+      {"date": "2025-09-13", "author": "DevSarah", "body": "Resolved by increasing timeout. No further action needed."}
+    ],
+    "labels": ["staging", "auth", "v2.4"]
+  },
+  {
+    "id": "SEC-442",
+    "key": "SEC-442",
+    "title": "Manual production verification – auth timeout",
+    "status": "Open",
+    "updated": "2025-09-14",
+    "created": "2025-09-14",
+    "assignee": "SecRob",
+    "reporter": "SecRob",
+    "comment": "Fix merged but needs manual prod verification. Do not sign off until AUTH_TIMEOUT is confirmed 45s in production.",
+    "comments": [],
+    "labels": ["security", "compliance", "v2.4"]
+  }
+]

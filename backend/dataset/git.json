@@ -1,0 +1,26 @@
+[
+  {
+    "hash": "8a2f4c9",
+    "short_hash": "8a2f",
+    "date": "2025-09-13",
+    "branch": "main",
+    "version_tag": "v2.4",
+    "author": "DevSarah",
+    "message": "Temporary staging fix (AUTH-101)",
+    "change": "services/auth/config.js: AUTH_TIMEOUT 30 -> 90. Merged into main release branch; contradicts Slack intent (DO NOT MERGE TO PROD).",
+    "diff": "--- a/services/auth/config.js\n+++ b/services/auth/config.js\n@@ -12,7 +12,7 @@\n-const AUTH_TIMEOUT = 30; // Standard Security Limit\n+const AUTH_TIMEOUT = 90; // Temporary staging fix (AUTH-101)\n\n // TODO: Revert AUTH-101 before production release",
+    "files_changed": ["services/auth/config.js"]
+  },
+  {
+    "hash": "7b1e3d2",
+    "short_hash": "7b1e",
+    "date": "2025-09-20",
+    "branch": "main",
+    "version_tag": "v2.5",
+    "author": "SecRob",
+    "message": "Security hardening: enforce 45s max per policy",
+    "change": "config.js: AUTH_TIMEOUT 90 -> 45",
+    "diff": "- const AUTH_TIMEOUT = 90; // Temporary staging fix (AUTH-101)\n+ const AUTH_TIMEOUT = 45; // Security policy",
+    "files_changed": ["services/auth/config.js"]
+  }
+]

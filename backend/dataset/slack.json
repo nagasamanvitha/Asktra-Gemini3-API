@@ -1,0 +1,29 @@
+[
+  {
+    "timestamp": "2025-09-13T14:20:00Z",
+    "date": "2025-09-13",
+    "user": "DevSarah",
+    "author": "DevSarah",
+    "channel": "dev-backend",
+    "text": "Staging is unusable. Redis is timing out at 40s. I'm bumping AUTH_TIMEOUT to 90s in the v2.4 branch just to get the QA demo through. DO NOT MERGE TO PROD.",
+    "message": "Staging is unusable. Redis is timing out at 40s. I'm bumping AUTH_TIMEOUT to 90s in the v2.4 branch just to get the QA demo through. DO NOT MERGE TO PROD."
+  },
+  {
+    "timestamp": "2025-09-13T14:25:00Z",
+    "date": "2025-09-13",
+    "user": "SecRob",
+    "author": "SecRob",
+    "channel": "security-alerts",
+    "text": "Sarah, 90s is a DoS vulnerability. Max policy is 45s. If that hits production, we fail our SOC2 audit next week.",
+    "message": "Sarah, 90s is a DoS vulnerability. Max policy is 45s. If that hits production, we fail our SOC2 audit next week."
+  },
+  {
+    "timestamp": "2025-09-14T09:00:00Z",
+    "date": "2025-09-14",
+    "user": "DevSarah",
+    "author": "DevSarah",
+    "channel": "dev-backend",
+    "text": "Wait, did the v2.4 tag already build? I haven't reverted the timeout yet. Checking now...",
+    "message": "Wait, did the v2.4 tag already build? I haven't reverted the timeout yet. Checking now..."
+  }
+]
