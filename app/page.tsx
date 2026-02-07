@@ -13,6 +13,8 @@ import FindingsSidebar from "@/frontend/src/components/FindingsSidebar";
 const API_BASE = "/api";
 const SOURCE_KEYS = ["slack", "git", "jira", "docs", "releases"];
 
+type SourceDetail = { type: string; label: string; content: string };
+
 function toEditable(data: unknown): string {
   if (data == null) return "";
   if (typeof data === "string") return data;
@@ -72,7 +74,7 @@ export default function Page() {
   const [bundle, setBundle] = useState<{ post_mortem: string; pr_diff: string; slack_summary: string } | null>(null);
   const [bundleLoading, setBundleLoading] = useState(false);
   const [bundleOpen, setBundleOpen] = useState(false);
-  const [sourcePopup, setSourcePopup] = useState<{ type: string; label: string; content: string } | null>(null);
+  const [sourcePopup, setSourcePopup] = useState<SourceDetail | null>(null);
 
   useEffect(() => {
     if (!experimentOpen) return;
@@ -367,8 +369,8 @@ export default function Page() {
                 <AnswerPanel
                   result={result}
                   revealIndex={revealIndex}
-                  sourceDetails={(result.source_details as { type: string; label: string; content: string }[]) ?? []}
-                  onCitationClick={(d) => setSourcePopup(d)}
+                  sourceDetails={(result.source_details as SourceDetail[]) ?? []}
+                  onCitationClick={(d: SourceDetail) => setSourcePopup(d)}
                 />
                 <ReasoningTrace
                   steps={(result.reasoning_trace as string[]) ?? []}
@@ -378,7 +380,7 @@ export default function Page() {
 
               <SourcePanel
                 sources={(result.sources as string[]) ?? []}
-                sourceDetails={(result.source_details as { type: string; label: string; content: string }[]) ?? []}
+                sourceDetails={(result.source_details as SourceDetail[]) ?? []}
                 contradictions={(result.contradictions as string[]) ?? []}
                 sourcePopup={sourcePopup}
                 setSourcePopup={setSourcePopup}
