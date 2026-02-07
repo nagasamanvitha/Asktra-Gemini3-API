@@ -160,7 +160,7 @@ export default function App() {
         const parts = buffer.split('\n\n')
         buffer = parts.pop() || ''
         for (const part of parts) {
-          const eventMatch = part.match(/^event:\s*(\w+)\ndata:\s*(.+)/s)
+          const eventMatch = part.match(/^event:\s*(\w+)\ndata:\s*([\s\S]+)/)
           if (!eventMatch) continue
           const [, eventType, dataStr] = eventMatch
           try {
