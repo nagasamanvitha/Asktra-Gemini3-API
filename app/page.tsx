@@ -347,12 +347,12 @@ export default function Page() {
                       Based on {Math.max((result.evidence as string[])?.length ?? 0, (result.sources as string[])?.length ?? 0, 1)} signal(s).
                     </span>
                   </div>
-                  {((result.contradictions as string[])?.length > 0 || result.risk) && (
+                  {((result.contradictions as string[])?.length > 0 || Boolean(result.risk)) ? (
                     <span className="version-risk-badge">
                       <span className="version-risk-icon" aria-hidden>⚠</span>
                       High risk detected
                     </span>
-                  )}
+                  ) : null}
                 </div>
                 {(result.evidence as string[])?.length > 0 && (
                   <ul className="evidence">
