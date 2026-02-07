@@ -1,5 +1,11 @@
 {
+  "framework": "fastapi",
   "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "framework": "fastapi"
+  "functions": {
+    "api/index.py": {
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  }
 }
