@@ -6,7 +6,10 @@ const STEP_LABELS = [
   'Security correlation',
 ]
 
-export default function ReasoningTrace({ steps, sources = [] }) {
+/**
+ * @param {{ steps: string[], sources?: string[] }} props
+ */
+export default function ReasoningTrace({ steps, sources = /** @type {string[]} */ ([]) }) {
   if (!steps?.length) return null
 
   return (
