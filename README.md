@@ -85,7 +85,7 @@ Copy `.env.example` to `.env` and set:
 
 ```bash
 GEMINI_API_KEY=your_key_here
-# Optional: GEMINI_MODEL=gemini-2.0-flash  (or gemini-3-flash-preview)
+# Optional: GEMINI_MODEL= gemini-3-flash-preview
 ```
 
 Install and run **everything** with one command:
@@ -157,15 +157,6 @@ Returns a **PR body** (or patch description) — ready for human review. No auto
 ## Architecture diagram
 
 See **[ARCHITECTURE.md](./ARCHITECTURE.md)** for high-level flow, input layer, Gemini pipeline (Version Inferrer → Causal Reasoner → Self-Correction / Emit Docs / Reconciliation Patch / Bundle), output UI, and Gemini usage per component.
-
----
-
-## Demo flow (under 3 minutes)
-
-1. **Pain (0:00–0:30):** "Docs say this bug is impossible. The dev who wrote this left."
-2. **Input (0:30–1:00):** Show preloaded Slack, Git, README, Jira — no version dropdown.
-3. **Win (1:00–2:20):** Ask *"Analyze the v2.4 timeout issue."* Show inferred version, evidence, **Truth Gap** (30s vs 90s), fix steps, reasoning trace. Then the **trap**: *"Actually, I think the timeout is 30s. Why am I seeing errors?"* — Asktra corrects the user: *"We established earlier that Commit 8a2f set it to 90s…"* (Hard Truths).
-4. **Close (2:20–3:00):** Click **Sync Reality**; show emitted Markdown. Optional: call `/emit-reconciliation-patch` to show the agent generating a PR for the finding.
 
 ---
 
