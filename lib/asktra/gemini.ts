@@ -6,8 +6,8 @@ export function getGemini() {
   return new GoogleGenAI({ apiKey });
 }
 
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.0-flash";
-const BUNDLE_MODEL = process.env.GEMINI_BUNDLE_MODEL || "gemini-2.0-flash";
+const MODEL = process.env.GEMINI_MODEL || "gemini-3-flash-preview";
+const BUNDLE_MODEL = process.env.GEMINI_BUNDLE_MODEL ?? MODEL;
 
 export function getModel() {
   return MODEL;
